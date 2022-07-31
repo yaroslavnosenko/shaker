@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useEditorState } from '../../hooks'
 import { CubeProps } from '../../types'
 import { changeBrightness } from '../../utils'
+import { nanoid } from 'nanoid'
 
 const BASIC_SIZE: number[] = [1, 1, 1]
 const BASIC_OPACITY: number = 1
@@ -10,21 +11,20 @@ export const Cube = (props: CubeProps) => {
   const { position, color, size = BASIC_SIZE, opacity = BASIC_OPACITY } = props
   const ref = useRef()
   const [side, setSide] = useState<number | null>(null)
-  const { addCube } = useEditorState()
+  const { addCube, saveCubes } = useEditorState()
 
   const onClick = (side: number) => {
     const { x, y, z } = (ref as any).current.position
     const newPos = [x, y, z]
-    const newCube = { ID: 'cube1', position: newPos, color: 'red' }
+    const newCube = { ID: nanoid(5), position: newPos, color: 'red' }
     if (side === 0) newCube.position[0]++
     if (side === 2) newCube.position[1]++
     if (side === 4) newCube.position[2]++
-
     if (side === 1) newCube.position[0]--
     if (side === 3) newCube.position[1]--
     if (side === 5) newCube.position[2]--
-
     addCube(newCube)
+    saveCubes()
   }
 
   return (

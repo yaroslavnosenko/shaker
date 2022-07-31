@@ -16,7 +16,7 @@ export const Shaker = () => {
       }}
     >
       <ambientLight intensity={0.25} />
-      <pointLight castShadow intensity={0.7} position={[100, 100, 100]} />
+      <pointLight castShadow intensity={1} position={[10, 10, 10]} />
       <Suspense fallback={null}>
         {cubes.map((cubeProps) => (
           <Cube key={cubeProps.ID} {...cubeProps} />
