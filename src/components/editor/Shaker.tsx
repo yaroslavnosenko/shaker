@@ -1,16 +1,18 @@
+import { useToken } from '@chakra-ui/react'
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import { Cube } from '.'
+import { Cube, Toolbar, Properties } from '.'
 import { useEditorState } from '../../hooks'
 
-export const Shaker = () => {
+export const Scene = () => {
+  const [color] = useToken('colors', ['gray.50'])
   const { cubes } = useEditorState()
   return (
     <Canvas
       camera={{ position: [5, 5, 5] }}
       style={{
-        backgroundColor: '#2d3436',
+        backgroundColor: color,
         width: '100vw',
         height: '100vh',
       }}
@@ -26,3 +28,11 @@ export const Shaker = () => {
     </Canvas>
   )
 }
+
+export const Shaker = () => (
+  <>
+    <Scene />
+    <Toolbar />
+    <Properties />
+  </>
+)
