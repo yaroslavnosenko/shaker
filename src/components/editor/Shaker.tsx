@@ -1,9 +1,8 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Suspense, useState } from 'react'
+import { Suspense } from 'react'
 import { Cube } from '.'
 import { useEditorState } from '../../hooks'
-import { __mockFigure } from '../../__mock'
 
 export const Shaker = () => {
   const { cubes } = useEditorState()
