@@ -1,9 +1,12 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import { Cube } from '.'
+import { CubeProps } from '../../types'
+import { __mockFigure } from '../../__mock'
 
 export const Shaker = () => {
+  const [cubes, setCubes] = useState<CubeProps[]>(__mockFigure)
   return (
     <Canvas
       camera={{ position: [5, 5, 5] }}
@@ -17,7 +20,9 @@ export const Shaker = () => {
       <ambientLight intensity={0.1} />
       <directionalLight intensity={0.4} />
       <Suspense fallback={null}>
-        <Cube />
+        {cubes.map((cubeProps) => (
+          <Cube key={cubeProps.ID} {...cubeProps} />
+        ))}
       </Suspense>
       <OrbitControls />
     </Canvas>
