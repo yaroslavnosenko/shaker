@@ -3,7 +3,6 @@ import { Canvas } from '@react-three/fiber'
 import { Suspense, useState } from 'react'
 import { Cube } from '.'
 import { useEditorState } from '../../hooks'
-import { CubeProps } from '../../types'
 import { __mockFigure } from '../../__mock'
 
 export const Shaker = () => {
